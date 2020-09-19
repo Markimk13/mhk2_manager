@@ -34,6 +34,8 @@ By pressing *CTRL-S* or going in `File -> Einstellungen (Settings)`. You can set
 
 ### Highscores
 
+You already saw the best times of Time Trial - Fabrik - 150 ccm in the first image. However, there are more highscore you can see.
+
 You can also see your best rounds by clicking the check box next to *Alle Runden* (All rounds). And there are a lot more filtering options to discover! Like character, version and rank limit.
 
 <img src="documentation/MainFrame-1.png" alt="MainFrame-1" height="500">
