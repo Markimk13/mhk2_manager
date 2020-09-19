@@ -14,7 +14,9 @@ Follow these steps to install **Moorhuhn Kart 2 - File Manager**. If you need he
 This application is able to
 
 1. keep track of highscores that were made in Time Trial, Championships and Duels (only when the game was opened within this application).
-1. manage and select the phantoms that you want to race against.
+1. manage and select the phantoms that you want to race against. You can also import your friend's phantom.
+
+If you want to race against my phantoms, you can download them in [Google Drive](https://drive.google.com/drive/folders/1NtGrBfKoWzcHG83fCXu5MzUXZECiBvWm?usp=sharing).
 
 ## Get started
 
