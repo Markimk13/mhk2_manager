@@ -1,15 +1,12 @@
 package main.java.ch.mko.fmm;
 
 import java.awt.BorderLayout;
-import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
@@ -19,24 +16,21 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 import javax.swing.ToolTipManager;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
 
 import main.java.ch.mko.fmm.i18n.I18N;
 import main.java.ch.mko.fmm.i18n.I18NLocale;
 import main.java.ch.mko.fmm.model.enums.Version;
 import main.java.ch.mko.fmm.model.score.HighscoreSettings;
+import main.java.ch.mko.fmm.util.SwingUtils;
 import main.java.ch.mko.fmm.views.CustomPhantom;
 import main.java.ch.mko.fmm.views.HighscorePanel;
 import main.java.ch.mko.fmm.views.LogPanel;
@@ -138,8 +132,12 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					JOptionPane.showMessageDialog(menuBar, Application.getFullCredits(),
-							I18NLocale.getString(I18N.CREDITS_MENU_ITEM), JOptionPane.INFORMATION_MESSAGE);
+				    String message = Application.getApplicationInfo()
+				    		+ "<br/><br/>"
+				    		+ String.format("GitHub: <a href=\"%s\">%s</a>", Application.getGithubLink(), Application.getGithubLink())
+				    		+ "<br/><br/>"
+				    		+ Application.getCredits();
+				    SwingUtils.openHtmlMessageDialog(menuBar, I18NLocale.getString(I18N.CREDITS_MENU_ITEM), message);
 					
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -157,41 +155,11 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// for copying style
-				    JLabel label = new JLabel();
-				    Font font = label.getFont();
-
-				    // create some css from the label's font
-				    StringBuffer style = new StringBuffer("font-family:" + font.getFamily() + ";");
-				    style.append("font-weight:" + (font.isBold() ? "bold" : "normal") + ";");
-				    style.append("font-size:" + font.getSize() + "pt;");
-
-				    JEditorPane ep = new JEditorPane("text/html", "<html><body style=\"" + style + "\">"
-				            + String.format(I18NLocale.getString(I18N.HELP_VIDEO_TEXT), Application.getHelpVideo(), Application.getHelpVideo())
+				    String message = String.format(I18NLocale.getString(I18N.HELP_VIDEO_TEXT), Application.getHelpVideo(), Application.getHelpVideo())
 						    + "<br/><br/>"
-						    + String.format(I18NLocale.getString(I18N.HELP_EMAIL_TEXT), Application.getEmail(), Application.getEmail())
-				            + "</body></html>");
+						    + String.format(I18NLocale.getString(I18N.HELP_EMAIL_TEXT), Application.getEmail(), Application.getEmail());
+				    SwingUtils.openHtmlMessageDialog(menuBar, I18NLocale.getString(I18N.HELP_MENU_ITEM), message);
 
-				    ep.addHyperlinkListener(new HyperlinkListener()
-				    {
-				        @Override
-				        public void hyperlinkUpdate(HyperlinkEvent e)
-				        {
-				            if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
-				            	try {
-									Desktop.getDesktop().browse(e.getURL().toURI());
-								} catch (IOException | URISyntaxException e1) {
-									e1.printStackTrace();
-									LOG_PANEL.error("Link cannot be opened: " + e1.getMessage(), e1);
-								}
-				            }
-				        }
-				    });
-				    ep.setEditable(false);
-				    ep.setBackground(label.getBackground());
-
-				    JOptionPane.showMessageDialog(menuBar, ep, I18NLocale.getString(I18N.HELP_MENU_ITEM), JOptionPane.INFORMATION_MESSAGE);
-				    
 				} catch (Exception e1) {
 					e1.printStackTrace();
 					LOG_PANEL.error("Cannot show help: " + e1.getMessage(), e1);

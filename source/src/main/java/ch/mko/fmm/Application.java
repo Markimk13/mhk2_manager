@@ -45,8 +45,12 @@ public class Application {
 		return messages.getString("help_video");
 	}
 	
-	public static String getFullCredits() {
+	public static String getGithubLink() {
+		return messages.getString("github_link");
+	}
+	
+	public static String getApplicationInfo() {
 		return getName() + " " + getVersion() + " ("
-				+ getVersionDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + ")\n\n" + getCredits();
+				+ getVersionDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + ")";
 	}
 }
