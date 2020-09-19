@@ -3,21 +3,24 @@
 
 # Log file
 *.log
+log*.txt
 
-# BlueJ files
-*.ctxt
+# Java bin
+bin/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# MHK2-Files
+source/MHK2-XXL.exe
+source/settings.dat
+source/data/mhk2-*.dat
+source/data/Phantom/
+source/data/Championship/
+source/data/Duel/
+
+# For testing
+test/

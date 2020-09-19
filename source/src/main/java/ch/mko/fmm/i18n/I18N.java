@@ -1,0 +1,120 @@
+package main.java.ch.mko.fmm.i18n;
+
+public enum I18N {
+
+	// Application
+	CREDITS,
+	
+	// MainFrame
+	OPEN_GAME,
+	MANAGE_PHANTOMS,
+	SETTINGS_MENU_ITEM,
+	CREDITS_MENU_ITEM,
+	HELP_MENU_ITEM,
+	HELP_VIDEO_TEXT,
+	HELP_EMAIL_TEXT,
+	PLAYER,
+	PLAYER_1,
+	PLAYER_2,
+	
+	// SettingsDialog
+	LANGUAGE_RESTART_INFO,
+	
+	// HighscoreMode
+	TIME_TRIAL,
+	CHAMPIONSHIP_TIMES,
+	CHAMPIONSHIP,
+	DUEL,
+	
+	// PhantomMode
+	BEST_TIMES,
+	BEST_TIMES_TEXT,
+	SOURCE,
+	SOURCE_TEXT,
+	
+	// Engine
+	ENGINE_50,
+	ENGINE_100,
+	ENGINE_150,
+	
+	// GameCharacter
+	MOORHUHN,
+	LESSHUHN,
+	MOORFROSCH,
+	PUMPKIN,
+	SNOWMAN,
+	KROET,
+	HANK,
+	
+	// Level
+	MOORHUHN_X,
+	WINTER,
+	ISLAND,
+	EGYPT,
+	FACTORY,
+	MINE,
+	CASTLE,
+	SWAMP,
+	
+	// HighscoreList
+	RANK,
+	DATE,
+	TIME,
+	POINTS,
+	CHARACTER,
+	VERSION,
+	ROUND,
+	
+	// Player
+	ALL_PLAYER_TYPES,
+	PC,
+	HUMAN,
+	CUSTOM,
+	LOCAL,
+	
+	// TrackTime
+	LEVEL,
+	ENGINE,
+	ROUNDS,
+	
+	// VersionFilter
+	ALL_VERSIONS,
+	CURRENT_VERSION,
+	USE_MAIN_SETTING,
+	
+	// CharacterFilter
+	ALL_CHARACTERS,
+	CURRENT_CHARACTER,
+	
+	// HighscorePanel
+	ALL_ROUNDS,
+	RANK_LIMIT,
+	
+	// PhantomsDialog
+	ONLY_CURRENT_VERSION,
+	ONLY_CURRENT_CHARACTER,
+	USE_CUSTOM_PHANTOMS,
+	ADD_CUSTOM_PHANTOMS,
+	CANCEL,
+	SAVE,
+	PHANTOM_OPTIONS,
+	CLICK_TO_EDIT_TEXT,
+	DELETE,
+	DELETE_PHANTOM_WARNING,
+	WARNING,
+	
+	// CustomPhantom
+	PLAYER_ORIGIN,
+	USED_FOR_VERSIONS,
+	USED_FOR_CHARACTERS,
+	
+	// SettingsDialog
+	ADD_HIGHSCORES_WHILE_PLAYING,
+	SHOW_DETAILS_IN_TOOLTIP,
+	LANGUAGE;
+	
+	public String getKey() {
+		return toString().toLowerCase();
+	}
+	
+}
