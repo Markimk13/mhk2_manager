@@ -12,6 +12,9 @@ import java.nio.file.WatchService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import main.java.ch.mko.fmm.i18n.I18N;
+import main.java.ch.mko.fmm.i18n.I18NLocale;
+import main.java.ch.mko.fmm.model.enums.Version;
 import main.java.ch.mko.fmm.model.score.Championship;
 import main.java.ch.mko.fmm.model.score.Duel;
 import main.java.ch.mko.fmm.model.score.HighscoreSettings;
@@ -84,6 +87,12 @@ public class SettingsUpdateChecker {
 					        			int currentCharacter = m_settings.getCurrentCharacter();
 						        		if (m_settings.update()) {
 							        		MainFrame.LOG_PANEL.log("Update in settings found.");
+							        		
+							        		if (Version.getGameVersion() == null) {
+							        			MainFrame.LOG_PANEL.warn("The game wasn't opened by the \""
+							        					+ I18NLocale.getString(I18N.OPEN_GAME) + "\" button! "
+							        					+ "So if you make new highscores, they cannot be saved!");
+							        		}
 							        		
 						        			switch (m_settings.getType()) {
 
