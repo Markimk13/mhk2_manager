@@ -24,7 +24,7 @@ When you open the application, you see the following view. It shows your current
 
 <img src="documentation/MainFrame.png" alt="MainFrame" height="500">
 
-By pressing *CTRL-S* or going in `File -> Einstellungen (Settings)`. You can set
+By pressing *CTRL-S* or going in `File -> Einstellungen (Settings)`. You can set the following things:
 * if you want to add highscores while playing.
 * if you want to see details in the tooltips (which you see when you longer stay at one item with your mouse).
 * the names of player 1 and player 2.
