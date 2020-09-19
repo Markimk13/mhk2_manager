@@ -48,7 +48,7 @@ When you click at *Meisterschaft* (Championship), you see your best **total** ti
 
 <img src="documentation/MainFrame-3.png" alt="MainFrame-3" height="500">
 
-When you click at *Duell* (Duel), you see your best times that you did on duels (also known as challenge).
+When you click at *Duell* (Duel, also known as *Challenge*), you see your best times that you did on duels.
 
 <img src="documentation/MainFrame-4.png" alt="MainFrame-4" height="500">
 
