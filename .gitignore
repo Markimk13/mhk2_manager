@@ -14,6 +14,9 @@ bin/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+# Individual settings
+*.ser
+
 # MHK2-Files
 source/MHK2-XXL.exe
 source/settings.dat
@@ -21,6 +24,7 @@ source/data/mhk2-*.dat
 source/data/Phantom/
 source/data/Championship/
 source/data/Duel/
+source/data/source/
 
 # For testing
 test/
