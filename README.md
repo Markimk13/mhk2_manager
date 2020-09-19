@@ -6,10 +6,9 @@ Follow these steps to install **Moorhuhn Kart 2 - File Manager**. If you need he
 
 1. Download the application file [mhk2_manager.jar](https://github.com/Markimk13/mhk2_manager/raw/master/source/mhk2_manager.jar).
 1. Search the location on your computer where you installed **Moorhuhn Kart 2**.
-1. Copy the whole folder *Moorhuhn Kart 2* to your home directory or any other location where you do not need Admin permissions. 
-1. Copy the *mhk2_manager.jar* file into the chosen location. It must be copied into the same folder as where the *MHK2-XXL.exe* file is.
+1. Copy the *mhk2_manager.jar* file into this location. It must be copied into the same folder as where the *MHK2-XXL.exe* file is.
+1. If you needed Admin permissions in step 3, you cannot open *mhk2_manager.jar* in this location. So you have to copy the whole folder *Moorhuhn Kart 2* to your home directory or any other location where you do not need Admin permissions.
 1. Execute the *mhk2_manager.jar* file. When executing it the first time, it will load some source files.
-1. The application does not open, you are most likely in a location where you need Admin permissions which *mhk2_manager.jar* cannot get.
 
 ## Features
 
