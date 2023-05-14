@@ -1,0 +1,9 @@
+To better distinguish the versions:
+
+Look for the length of the following file
+data\mk2\level01\objects\collision_border.dff
+in mhk2-00.dat or mhk2-01.dat (the latter one, that contains the file, counts)
+
+It should be (big endian)
+ - 14 A4 00 00 (for V1.0)
+ - 4C 74 00 00 (for V1.1)
