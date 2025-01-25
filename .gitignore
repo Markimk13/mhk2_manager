@@ -28,3 +28,9 @@ source/data/source/
 
 # For testing
 test/
+
+# IntelliJ
+.idea/
+!.idea/libraries/
+!.idea/runConfigurations/
+out/
