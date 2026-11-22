@@ -36,7 +36,10 @@ public enum I18N {
 	ENGINE_50,
 	ENGINE_100,
 	ENGINE_150,
-	
+	ENGINE_200,
+	ENGINE_250,
+	ENGINE_TUNING,
+
 	// GameCharacter
 	MOORHUHN,
 	LESSHUHN,

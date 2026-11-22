@@ -17,6 +17,8 @@ This application is able to
 1. keep track of highscores that were made in Time Trial, Championships and Duels (only when the game was opened within this application).
 1. manage and select the phantoms that you want to race against. You can also import your friend's phantom.
 
+Since V1.1 it also knows the classes *200 ccm*, *250 ccm* and *Tuning* that the patch from [mhk2-experiments](https://github.com/Markimk13/mhk2-experiments) adds to the game. They have no source phantoms, so a track of these classes only gets a phantom once you have driven it.
+
 If you want to race against my phantoms, you can download them in [Google Drive](https://drive.google.com/drive/folders/1NtGrBfKoWzcHG83fCXu5MzUXZECiBvWm?usp=sharing).
 
 ## Get started

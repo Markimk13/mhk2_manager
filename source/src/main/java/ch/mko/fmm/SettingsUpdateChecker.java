@@ -244,21 +244,28 @@ public class SettingsUpdateChecker {
 			try {
 				bestPhantom = new Phantom(outputPath);
 			} catch (IOException ioe) {
-				bestPhantom = new Phantom(m_phantom.getSourcePath());
+				try {
+					bestPhantom = new Phantom(m_phantom.getSourcePath());
+				} catch (IOException ioe2) {
+					bestPhantom = null;		// new class: no phantom on this track yet
+				}
 			}
-			final Phantom bestPhantom2 = bestPhantom;
 			Phantom phantom = CustomPhantom.getSelectedPhantoms(HighscoreSettings.loadSettings()).stream()
+					.filter(cp -> cp != null)
 					.map(cp -> cp.getPhantom())
-					.filter(p -> p.getTrackTime().getEngine() == bestPhantom2.getTrackTime().getEngine()
-							&& p.getTrackTime().getLevel() == bestPhantom2.getTrackTime().getLevel())
+					.filter(p -> p.getTrackTime().getEngine() == m_phantom.getTrackTime().getEngine()
+							&& p.getTrackTime().getLevel() == m_phantom.getTrackTime().getLevel())
 					.findFirst()
 					.orElse(null);
 			
 			String backupPath = m_phantom.createDefaultBackupPath();
 			savePhantom(m_phantom, backupPath);
 			m_highscorePanel.updateTableData();
-			if (phantom == null || (phantom.getTrackTime().getPlayer().getPlayerOrigin() != PlayerOrigin.CUSTOM
-					&& m_phantom.getTrackTime().getTime() < bestPhantom.getTrackTime().getTime())) {
+			// The patched game replaces the track's phantom file itself when a run is faster, so that
+			// file may already be this run (same time: stamp it with name and hash) or a faster one.
+			boolean notSlower = bestPhantom == null
+					|| m_phantom.getTrackTime().getTime() <= bestPhantom.getTrackTime().getTime();
+			if (notSlower && (phantom == null || phantom.getTrackTime().getPlayer().getPlayerOrigin() != PlayerOrigin.CUSTOM)) {
 				PhantomMode phantomMode = HighscoreSettings.loadSettings().getPhantomMode();
 				if (phantomMode == PhantomMode.BEST_TIMES) {
 					savePhantom(m_phantom, outputPath);

@@ -222,7 +222,8 @@ public class CustomPhantom implements Serializable, Cloneable, Comparable<Custom
 					String defaultName = TrackTime.getDefaultName("phantom", i, j);
 					File[] phantomFiles = Paths.get(Phantom.PHANTOM_DIR, defaultName).toFile().listFiles();
 					phantomFiles = phantomFiles != null ? phantomFiles : new File[0];
-					TrackTime bestPhantomTrackTime = (TrackTime) Arrays.stream(phantomFiles)
+					Path sourcePath = Paths.get(Phantom.SOURCE_DIR, defaultName + ".mhk2");
+					Highscore bestHighscore = Arrays.stream(phantomFiles)
 							.map(f -> {
 								try {
 									return new Phantom(f.getAbsolutePath());
@@ -238,15 +239,21 @@ public class CustomPhantom implements Serializable, Cloneable, Comparable<Custom
 							.sorted()
 							.findFirst()
 							.orElseGet(() -> {
+								if (!sourcePath.toFile().isFile()) {
+									return null;	// 200 cc, 250 cc, tuning: no run and no source phantom yet
+								}
 								try {
-									Phantom p = new Phantom(Paths.get(Phantom.SOURCE_DIR, defaultName + ".mhk2").toString());
+									Phantom p = new Phantom(sourcePath.toString());
 									return new Highscore(p.getTrackTime(), -1);
 								} catch (IOException e) {
 									e.printStackTrace();
 									return null;
 								}
-							})
-							.getHighscoreItem();
+							});
+					if (bestHighscore == null) {
+						continue;
+					}
+					TrackTime bestPhantomTrackTime = (TrackTime) bestHighscore.getHighscoreItem();
 					Phantom bestPhantom = (Phantom) bestPhantomTrackTime.getSource();
 					allPhantoms.add(new CustomPhantom(bestPhantom, VersionFilter.ALL_VERSIONS, CharacterFilter.ALL_CHARACTERS));
 				}
@@ -257,6 +264,9 @@ public class CustomPhantom implements Serializable, Cloneable, Comparable<Custom
 				for (int j = 0; j < numLevels; j++) {
 					String defaultName = TrackTime.getDefaultName("phantom", i, j);
 					Path sourcePhantomPath = Paths.get(Phantom.SOURCE_DIR, defaultName + ".mhk2");
+					if (!Engine.values()[i].hasSourcePhantoms() && !sourcePhantomPath.toFile().isFile()) {
+						continue;	// the new classes have no source phantoms
+					}
 					Phantom sourcePhantom = new Phantom(sourcePhantomPath.toString());
 					allPhantoms.add(new CustomPhantom(sourcePhantom, VersionFilter.ALL_VERSIONS, CharacterFilter.ALL_CHARACTERS));
 				}
@@ -282,6 +292,9 @@ public class CustomPhantom implements Serializable, Cloneable, Comparable<Custom
 	public static void updateShownPhantoms() throws IOException {
 		List<CustomPhantom> customPhantoms = getSelectedPhantoms(HighscoreSettings.loadSettings());
 		for (CustomPhantom customPhantom : customPhantoms) {
+			if (customPhantom == null) {
+				continue;
+			}
 			Phantom phantom = customPhantom.getPhantom();
 			Path sourcePhantomPath = Paths.get(phantom.getInputFilePath());
 			Path defaultPhantomPath = Paths.get(Phantom.PHANTOM_DIR, phantom.getDefaultName() + ".mhk2");

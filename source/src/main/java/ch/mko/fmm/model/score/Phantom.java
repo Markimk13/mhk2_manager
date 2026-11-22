@@ -178,10 +178,17 @@ public class Phantom extends SettingsItem {
 			m_content[8+i] = i < currentNameContent.length ? currentNameContent[i] : 0;
 		}
 		
+		// bytes 40..71: the machine id of the track's source phantom, so that the game accepts the file.
+		// 200 cc, 250 cc and the tuning class have no source phantom; the patched game accepts
+		// every id there, so they get the neutral id of the game's own phantoms (32 dashes).
 		Path sourcePath = Paths.get(SOURCE_DIR, getDefaultName() + ".mhk2");
-		byte[] sourceContent = Files.readAllBytes(sourcePath);
-		for (int i = 40; i < 72; i++) {
-			m_content[i] = sourceContent[i];
+		if (sourcePath.toFile().isFile()) {
+			byte[] sourceContent = Files.readAllBytes(sourcePath);
+			for (int i = 40; i < 72; i++) {
+				m_content[i] = sourceContent[i];
+			}
+		} else {
+			Arrays.fill(m_content, 40, 72, (byte) '-');
 		}
 
 		byte[] hashBytes = getHashBytes();
